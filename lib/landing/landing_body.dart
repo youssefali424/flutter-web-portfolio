@@ -4,7 +4,6 @@ import 'package:app/utilities/extensions.dart';
 import 'package:app/utilities/showcase_app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/utilities/app_constants.dart';
-import 'package:app/landing/landing_footer.dart';
 import 'package:app/landing/widgets/showcase_app_item.dart';
 
 import 'description.dart';

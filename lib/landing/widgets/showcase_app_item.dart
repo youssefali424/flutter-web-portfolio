@@ -122,10 +122,10 @@ class ShowcaseAppItem extends StatelessWidget {
               label: 'GitHub',
             ),
           if (app.isCustomUrl)
-            ...app.customUrls!.entries.map((e) => ExternalLinkButton(
-                  url: e.value,
-                  iconData: FontAwesomeIcons.squareGithub,
-                  label: e.key,
+            ...app.customUrls!.map((e) => ExternalLinkButton(
+                  url: e.url,
+                  iconData: e.iconData,
+                  label: e.name,
                 )),
         ],
       ),

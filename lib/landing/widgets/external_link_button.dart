@@ -4,12 +4,12 @@ import 'package:app/utilities/url_launcher.dart';
 class ExternalLinkButton extends StatelessWidget {
   final String url;
   final String label;
-  final IconData iconData;
+  final IconData? iconData;
 
   const ExternalLinkButton({
     required this.url,
     required this.label,
-    required this.iconData,
+    this.iconData,
     super.key,
   });
 
@@ -23,11 +23,13 @@ class ExternalLinkButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Row(
           children: [
-            Icon(
-              iconData,
-              color: Colors.white,
-            ),
-            const SizedBox(width: 24.0),
+            if (iconData != null) ...[
+              Icon(
+                iconData,
+                color: Colors.white,
+              ),
+              const SizedBox(width: 24.0),
+            ],
             Text(
               label.toUpperCase(),
               style: const TextStyle(

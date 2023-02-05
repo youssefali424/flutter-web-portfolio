@@ -10,12 +10,12 @@ abstract class AppConstants {
   static const landingMotto = 'Mobile Applications\' Developer';
 
   static const webSiteURL = 'Youssef Ali Portfolio';
-  static const gitHubProfileURL = 'https://github.com/kamranbekirovyz';
-  static const linkedInProfileURL = 'www.linkedin.com/in/youssef-ali424';
+  static const gitHubProfileURL = 'https://github.com/youssefali424';
+  static const linkedInProfileURL = 'https://www.linkedin.com/in/youssef-ali424';
   static const eMail = 'mailto:youssefaligaber@gmail.com';
   static const flutterWebSiteURL = 'https://flutter.dev';
   static const openSourceRepoURL =
-      'https://github.com/kamranbekirovyz/flutter-web-portfolio';
+      'https://github.com/youssefali424/flutter-web-portfolio';
 
   static const portfolioTitle = 'PROFILE';
   static const portfolioDescription =

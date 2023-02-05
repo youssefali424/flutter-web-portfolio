@@ -1,11 +1,13 @@
 // A model that represents portfolio apps on landing page.
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class ShowcaseAppModel {
   final String name;
   final String? appStoreURL;
   final String? playStoreURL;
   final String? githubURL;
-  final String? pubDevURL;
-  final Map<String, String>? customUrls;
+  final List<CustomUrl>? customUrls;
 
   final String image;
   final String topic;
@@ -15,7 +17,6 @@ class ShowcaseAppModel {
     this.appStoreURL,
     this.playStoreURL,
     this.githubURL,
-    this.pubDevURL,
     required this.image,
     required this.topic,
     this.customUrls,
@@ -26,32 +27,31 @@ class ShowcaseAppModel {
     this.appStoreURL,
     this.playStoreURL,
     this.githubURL,
-    this.pubDevURL,
     required this.image,
     required this.topic,
     this.customUrls,
   }) : _isNetworkImage = true;
-  const ShowcaseAppModel.withNetworkCustomUrl({
-    required this.name,
-    required this.customUrls,
-    required this.image,
-    required this.topic,
-  })  : _isNetworkImage = true,
-        appStoreURL = null,
-        playStoreURL = null,
-        githubURL = null,
-        pubDevURL = null;
+  // const ShowcaseAppModel.withNetworkCustomUrl({
+  //   required this.name,
+  //   required this.customUrls,
+  //   required this.image,
+  //   required this.topic,
+  // })  : _isNetworkImage = true,
+  //       appStoreURL = null,
+  //       playStoreURL = null,
+  //       githubURL = null,
+  //       pubDevURL = null;
 
-  const ShowcaseAppModel.withLocalCustomUrl({
-    required this.name,
-    required this.customUrls,
-    required this.image,
-    required this.topic,
-  })  : _isNetworkImage = false,
-        appStoreURL = null,
-        playStoreURL = null,
-        githubURL = null,
-        pubDevURL = null;
+  // const ShowcaseAppModel.withLocalCustomUrl({
+  //   required this.name,
+  //   required this.customUrls,
+  //   required this.image,
+  //   required this.topic,
+  // })  : _isNetworkImage = false,
+  //       appStoreURL = null,
+  //       playStoreURL = null,
+  //       githubURL = null,
+  //       pubDevURL = null;
 
   final bool _isNetworkImage;
   bool get isNetworkImage => _isNetworkImage;
@@ -59,18 +59,42 @@ class ShowcaseAppModel {
   bool get isCustomUrl => customUrls != null && customUrls!.isNotEmpty;
 }
 
+class CustomUrl {
+  const CustomUrl({
+    required this.name,
+    required this.url,
+    this.iconData,
+  });
+  final String name;
+  final String url;
+  final IconData? iconData;
+}
+
 // List of apps that will be listed on landing page.
 const apps = [
-  ShowcaseAppModel.withLocalCustomUrl(
+  ShowcaseAppModel.withLocalAsset(
     name: 'APPExperts',
     image: 'assets/images/appexperts.jpg',
-    customUrls: {
-      'Website': 'https://appexperts.io',
-      'Facebook': 'https://www.facebook.com/appexperts.io',
-      'Twitter': 'https://twitter.com/appexperts_io',
-      'Instagram': 'https://www.instagram.com/appexperts.io',
-      'LinkedIn': 'https://www.linkedin.com/company/appexpertsio/',
-    },
+    customUrls: [
+      CustomUrl(
+          name: 'Website', url: 'https://appexperts.io', iconData: Icons.web),
+      CustomUrl(
+          name: 'Facebook',
+          url: 'https://www.facebook.com/appexperts.io',
+          iconData: FontAwesomeIcons.facebook),
+      CustomUrl(
+          name: 'Twitter',
+          url: 'https://twitter.com/appexperts_io',
+          iconData: FontAwesomeIcons.twitter),
+      CustomUrl(
+          name: 'Instagram',
+          url: 'https://www.instagram.com/appexperts.io',
+          iconData: FontAwesomeIcons.instagram),
+      CustomUrl(
+          name: 'LinkedIn',
+          url: 'https://www.linkedin.com/company/appexpertsio/',
+          iconData: FontAwesomeIcons.linkedin),
+    ],
     topic:
         'APPExperts is an Intuitive SaaS Platform that integrates your WordPress website to build a fully-functional iOS and Android application.',
   ),
@@ -139,23 +163,30 @@ const apps = [
   ),
 ];
 const packages = [
-  ShowcaseAppModel.withLocalCustomUrl(
+  ShowcaseAppModel.withNetworkAsset(
     name: 'Animated Image List',
-    image: 'assets/images/animated_list.webp',
-    customUrls: {
-      'Pub.dev': 'https://pub.dev/packages/animated_image_list',
-      'GitHub': 'https://github.com/youssefali424/animated_image_list',
-    },
+    image:
+        'https://github.com/youssefali424/animated_image_list/blob/master/mainGif.gif?raw=true',
+    customUrls: [
+      CustomUrl(
+          name: 'Pub.dev',
+          url: 'https://pub.dev/packages/animated_image_list',
+          iconData: Icons.developer_mode),
+    ],
+    githubURL: 'https://github.com/youssefali424/animated_image_list',
     topic:
         'Flutter Animated image list with parallax effect and image lightbox.',
   ),
-  ShowcaseAppModel.withLocalCustomUrl(
+  ShowcaseAppModel.withNetworkAsset(
     name: 'Animated Navigation Rail',
     image: 'assets/images/rail.gif',
-    customUrls: {
-      'Pub.dev': 'https://pub.dev/packages/animated_rail',
-      'GitHub': 'https://github.com/youssefali424/AnimatedRail',
-    },
+    customUrls: [
+      CustomUrl(
+          name: 'Pub.dev',
+          url: 'https://pub.dev/packages/animated_rail',
+          iconData: Icons.developer_mode),
+    ],
+    appStoreURL: 'https://github.com/youssefali424/AnimatedRail',
     topic:
         'Flutter Animated Naviation Rail with multiple cool effects see example project.',
   ),
