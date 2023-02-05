@@ -57,10 +57,10 @@ class LandingHeader extends StatelessWidget {
     // Logo size: when Tablet and Mobile = 56, when Desktop = 64
     final logoSize = ResponsiveValue<double>(
       context,
-      defaultValue: 40.0,
+      defaultValue: 56.0,
       valueWhen: [
-        const Condition.equals(name: TABLET, value: 56.0),
-        const Condition.largerThan(name: TABLET, value: 64.0),
+        const Condition.equals(name: TABLET, value: 70.0),
+        const Condition.largerThan(name: TABLET, value: 100.0),
       ],
     ).value;
 
@@ -103,10 +103,11 @@ class LandingHeader extends StatelessWidget {
               // Personal logo
               ClipOval(
                 child: FadeInImage.assetNetwork(
-                  image: 'https://porelarte.tech/kamranbekirovcom/personal-logo.png',
+                  image: 'assets/images/profile.png',
                   placeholder: 'assets/images/transparent.png',
                   height: logoSize,
                   width: logoSize,
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(width: 16.0),

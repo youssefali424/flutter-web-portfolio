@@ -7,6 +7,8 @@ import 'package:app/utilities/app_constants.dart';
 import 'package:app/landing/landing_footer.dart';
 import 'package:app/landing/widgets/showcase_app_item.dart';
 
+import 'description.dart';
+
 class LandingBody extends StatelessWidget {
   const LandingBody({
     Key? key,
@@ -21,6 +23,8 @@ class LandingBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const PortfolioDescription(),
+          const SizedBox(height: 48.0),
           const DelayedWidget(
             delayDuration: Duration(milliseconds: 2800),
             from: DelayFrom.bottom,
@@ -49,25 +53,25 @@ class LandingBody extends StatelessWidget {
             child: SelectableText(
               AppConstants.showcaseDescription,
               style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+                // fontWeight: FontWeight.bold,
                 color: Colors.white,
                 letterSpacing: 1.8,
               ),
             ),
           ),
-          const SizedBox(height: 24.0),
-          const DelayedWidget(
-            delayDuration: Duration(milliseconds: 3100),
-            from: DelayFrom.bottom,
-            child: SelectableText(
-              AppConstants.disclaimer,
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.white,
-              ),
-            ),
-          ),
+          // const SizedBox(height: 24.0),
+          // const DelayedWidget(
+          //   delayDuration: Duration(milliseconds: 3100),
+          //   from: DelayFrom.bottom,
+          //   child: SelectableText(
+          //     AppConstants.disclaimer,
+          //     style: TextStyle(
+          //       fontSize: 16.0,
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          // ),
           const SizedBox(height: 56.0),
 
           DelayedWidget(
@@ -87,12 +91,50 @@ class LandingBody extends StatelessWidget {
                             ? 3
                             : 1;
 
-                    final itemWidth = (availableWidth - ((rowItemCount - 1) * 16.0)) / rowItemCount;
+                    final itemWidth =
+                        (availableWidth - ((rowItemCount - 1) * 16.0)) /
+                            rowItemCount;
 
-                    return SizedBox(
-                      width: itemWidth,
-                      child: ShowcaseAppItem(e),
-                    );
+                    return ShowcaseAppItem(e, itemWidth: itemWidth);
+                  }).toList(),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 56.0),
+          const DelayedWidget(
+            delayDuration: Duration(milliseconds: 3000),
+            from: DelayFrom.bottom,
+            child: SelectableText(
+              AppConstants.packages,
+              style: TextStyle(
+                fontSize: 16.0,
+                // fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.8,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24.0),
+          DelayedWidget(
+            delayDuration: const Duration(milliseconds: 3200),
+            from: DelayFrom.bottom,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Wrap(
+                  spacing: 16.0,
+                  runSpacing: 16.0,
+                  children: packages.map((e) {
+                    final availableWidth = constraints.maxWidth;
+                    final rowItemCount = context.isDesktop
+                        ? 4
+                        : context.isTablet
+                            ? 3
+                            : 1;
+                    final itemWidth =
+                        (availableWidth - ((rowItemCount - 1) * 16.0)) /
+                            rowItemCount;
+                    return ShowcaseAppItem(e, itemWidth: itemWidth);
                   }).toList(),
                 );
               },
@@ -101,7 +143,7 @@ class LandingBody extends StatelessWidget {
           const SizedBox(height: 120.0),
 
           // 2 Buttons at bottom of landing: flutter.dev, github.com.
-          const LandingFooter(),
+          // const LandingFooter(),
           const SizedBox(height: 120.0),
         ],
       ),

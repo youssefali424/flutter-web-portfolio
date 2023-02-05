@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class SourceAwareImage extends StatelessWidget {
   final String image;
   final bool isNetworkImage;
+  final BoxFit? fit;
 
   const SourceAwareImage({
     required this.image,
     required this.isNetworkImage,
+    this.fit,
     super.key,
   });
 
@@ -16,9 +18,11 @@ class SourceAwareImage extends StatelessWidget {
     return isNetworkImage
         ? Image.network(
             image,
+            fit: fit,
           )
         : Image.asset(
             image,
+            fit: fit,
           );
   }
 }

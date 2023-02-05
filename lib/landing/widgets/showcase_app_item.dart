@@ -9,62 +9,66 @@ import 'package:app/landing/widgets/external_link_button.dart';
 
 class ShowcaseAppItem extends StatelessWidget {
   final ShowcaseAppModel app;
+  final double itemWidth;
 
   const ShowcaseAppItem(
     this.app, {
     Key? key,
+    required this.itemWidth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(16.0),
-        topRight: Radius.circular(16.0),
-        bottomLeft: Radius.circular(4.0),
-        bottomRight: Radius.circular(4.0),
-      ),
-      child: Stack(
-        children: [
-          _buildChild(),
-          Positioned(
-            top: 0.0,
-            // bottom: 192.0,
-            left: 0.0,
-            right: 0.0,
-            child: GestureDetector(
-              // When overlay tapped, open full screen interactive image viewer.
-              onTap: () {
-                showGeneralDialog(
-                  context: context,
-                  pageBuilder: (_, __, ___) {
-                    return InteractiveImageViewer(
+    return SizedBox(
+      width: itemWidth,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+          bottomLeft: Radius.circular(4.0),
+          bottomRight: Radius.circular(4.0),
+        ),
+        child: Container(
+          color: cardColor,
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: itemWidth * 1.7,
+                    child: SourceAwareImage(
                       image: app.image,
                       isNetworkImage: app.isNetworkImage,
-                    );
-                  },
-                );
-              },
-              child: AnimatedImageOverlay(app.topic),
-            ),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: GestureDetector(
+                      // When overlay tapped, open full screen interactive image viewer.
+                      onTap: () {
+                        showGeneralDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          barrierLabel: MaterialLocalizations.of(context)
+                              .modalBarrierDismissLabel,
+                          pageBuilder: (_, __, ___) {
+                            return InteractiveImageViewer(
+                              image: app.image,
+                              isNetworkImage: app.isNetworkImage,
+                            );
+                          },
+                        );
+                      },
+                      child: AnimatedImageOverlay(app.topic),
+                    ),
+                  ),
+                ],
+              ),
+              _buildBottom(),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChild() {
-    return Container(
-      color: cardColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SourceAwareImage(
-            image: app.image,
-            isNetworkImage: app.isNetworkImage,
-          ),
-          _buildBottom(),
-        ],
+        ),
       ),
     );
   }
@@ -79,7 +83,15 @@ class ShowcaseAppItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildAppName(),
+              Row(
+                children: [
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: _buildAppName()),
+                  ),
+                ],
+              ),
               const Divider(
                 color: dividerColor,
                 thickness: 1.5,
@@ -109,6 +121,12 @@ class ShowcaseAppItem extends StatelessWidget {
               iconData: FontAwesomeIcons.squareGithub,
               label: 'GitHub',
             ),
+          if (app.isCustomUrl)
+            ...app.customUrls!.entries.map((e) => ExternalLinkButton(
+                  url: e.value,
+                  iconData: FontAwesomeIcons.squareGithub,
+                  label: e.key,
+                )),
         ],
       ),
     );
