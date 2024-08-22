@@ -19,6 +19,6 @@ abstract class AppConstants {
 
   static const portfolioTitle = 'PROFILE';
   static const portfolioDescription =
-      "I am a Mobile developer with more than 3 years of experience, I have the full responsibility for developing mobile apps and deploying them to main apps' store like google play and I am very eager to help your company grow more in the mobile development field.";
+      "I am a Mobile developer with more than 5 years of experience, I have the full responsibility for developing mobile apps and deploying them to main apps' store like google play and I am very eager to help your company grow more in the mobile development field.";
   static const packages = 'PACKAGES';
 }
