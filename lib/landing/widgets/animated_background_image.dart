@@ -33,7 +33,6 @@ class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage> {
   @override
   Widget build(BuildContext context) {
     final height = context.isMobile ? 440.0 : 540.0;
-    print("_y $_y");
     return SizedBox(
       height: height,
       width: double.maxFinite,
