@@ -73,6 +73,37 @@ class CustomUrl {
 // List of apps that will be listed on landing page.
 const apps = [
   ShowcaseAppModel.withLocalAsset(
+    name: 'Zain Business KSA',
+    image: 'assets/images/zain.png',
+    playStoreURL:
+        "https://play.google.com/store/apps/details?id=com.sa.zain.business",
+    appStoreURL: "https://apps.apple.com/sa/app/zain-business/id6450364727",
+    customUrls: [
+      CustomUrl(
+          name: 'Website',
+          url: 'https://business.zain.sa/',
+          iconData: Icons.web),
+      CustomUrl(
+          name: 'Facebook',
+          url: 'https://www.facebook.com/ZainKSA',
+          iconData: FontAwesomeIcons.facebook),
+      CustomUrl(
+          name: 'X',
+          url: 'https://x.com/ZainKSA',
+          iconData: FontAwesomeIcons.x),
+      CustomUrl(
+          name: 'Instagram',
+          url: 'https://www.instagram.com/zainksa/',
+          iconData: FontAwesomeIcons.instagram),
+      CustomUrl(
+          name: 'LinkedIn',
+          url: 'https://www.linkedin.com/company/zain-ksa/',
+          iconData: FontAwesomeIcons.linkedin),
+    ],
+    topic:
+        'Zain Business App: Your Ultimate Business Companion Discover the all-new Zain Business App.',
+  ),
+  ShowcaseAppModel.withLocalAsset(
     name: 'APPExperts',
     image: 'assets/images/appexperts.jpg',
     customUrls: [
@@ -165,8 +196,7 @@ const apps = [
 const packages = [
   ShowcaseAppModel.withNetworkAsset(
     name: 'Animated Image List',
-    image:
-        'https://github.com/youssefali424/animated_image_list/blob/master/mainGif.gif?raw=true',
+    image: 'assets/images/mainGif.gif',
     customUrls: [
       CustomUrl(
           name: 'Pub.dev',
